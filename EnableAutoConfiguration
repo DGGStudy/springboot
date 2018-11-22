@@ -1,0 +1,12 @@
+springboot启动原理：springmvc注解方式启动，内置http服务器（默认是Tomcat），代替传统的web.xml文件
+
+@RestController:表示该类中的所有方法返回json格式，等同于 @Controller(类注解) + @ResponseBody（方法注解）
+
+@EnableAutoConfiguration：注解作用：扫包范围默认是在当前类里面
+
+public class projectApplication {
+    public static void main(String[] args) {
+        //整个程序的入口，启动SpringBoot项目，创建内置tomcat服务器，使用tomcat加载springmvc注解
+        SpringApplication.run(projectApplication.class, args);
+    }
+}
