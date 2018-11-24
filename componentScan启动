@@ -1,7 +1,8 @@
 和@EnableAutoConfiguration搭配，确定扫包范围
 
 @EnableAutoConfiguration
-@ComponentScan("com.**.**.controller")
+@ComponentScan("com.**.**.controller")   
+如果要扫描多个包的话，注释可写为：@@ComponentScan(basePackages = {"com.**.**.controller","com.**.**.controller"})
 public class App{
   public static void main(String[] args){
   //整个程序入口，启动SpringBoot项目，创建内置tomcat服务器，使用tomcat加载springmvc注解启动类
