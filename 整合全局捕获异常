@@ -1,0 +1,15 @@
+全局捕获异常：整个web请求项目全局捕获异常
+思路：全局捕获异常使用AOP技术，采用异常通知
+方法：在类上注解@ControllerAdvice，在方法上注解@ExceptionHandler(value = Exception.class)，Exception.class表示拦截所有的异常信息
+案例：
+@ControllerAdvice
+public class GlobaleExceptionHandler{
+  @ExceptionHandler(RuntimeException.class)
+  @ResponseBody
+  public Map<String , Object> exceptionHandler(){
+    Map<String , Object> map = new HashMap<String, Object>();
+    map.put("errorCode","101");
+    map.put("errorMsg","系统错误")；
+    return map;
+  }
+}
