@@ -1,5 +1,13 @@
-引入freeMarker依赖包
-<dependency>
-  <groupId>org.springframework.boot</groupId>
-  <artifactId>spring-boot-starter-freemmarker</artifactId>
-</dependency>
+1.Freemarker + Springboot Maven配置,引入freeMarker依赖包
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-freemmarker</artifactId>
+    </dependency>
+
+2.Freemarker 页面目录配置
+    spring:
+      mvc:
+         view:
+           prefix: /templates/
+           suffix: .ftl
+   如果后缀是其他的，如htm，那么这里直接配置.htm即可。
