@@ -1,0 +1,48 @@
+在项目中使用Lombok可以减少很多重复代码的书写。比如说getter/setter/toString等方法的编写
+
+1.添加依赖
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.16.18</version>
+        <scope>provided</scope>
+    </dependency>
+    
+ 2.注解
+      @Setter
+      @Getter
+      @Data
+      @Log(这是一个泛型注解，具体有很多种形式)
+      @AllArgsConstructor
+      @NoArgsConstructor
+      @EqualsAndHashCode
+      @NonNull
+      @Cleanup
+      @ToString
+      @RequiredArgsConstructor
+      @Value
+      @SneakyThrows
+      @Synchronized
+      
+   3.log 注解在类上：
+      //@CommonsLog
+        private static final org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(LogExample.class);
+        //@JBossLog
+        private static final org.jboss.logging.Logger log = org.jboss.logging.Logger.getLogger(LogExample.class);
+        //@Log
+        private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(LogExample.class.getName());
+        //@Log4j
+        private static final org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(LogExample.class);
+        //@Log4j2
+        private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger(LogExample.class);
+        //@Slf4j
+        private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(LogExample.class);
+        //@XSlf4j
+        private static final org.slf4j.ext.XLogger log = org.slf4j.ext.XLoggerFactory.getXLogger(LogExample.class);
+        
+    4.@Getter和@Setter
+            该注解使用在类或者属性上，该注解可以使用在类上也可以使用在属性上。生成的getter遵循布尔属性的约定。例如：boolean类型的flag,getter方法
+          为isFlag而不是getFlag,在使用该注解时，会默认生成一个无参构造。和对应的getterhe setter方法 
+          
+还有很多其他注解，使用时查询即可。
+        
