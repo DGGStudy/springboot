@@ -1,0 +1,63 @@
+1.maven依赖
+    <dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-web</artifactId>
+	  </dependency>
+    
+ 2.启动类：添加@EnableAsync注解
+    
+      @SpringBootApplication
+      @EnableAsync
+      public class Application{
+          public static void main(String[] args) {
+              SpringApplication.run(Application.class, args);
+          }
+      }
+  3.建立一个异步任务类：
+        @Component
+        public class AsyncTask {
+
+          @Async
+          public void task1() throws InterruptedException{
+            long currentTimeMillis = System.currentTimeMillis();
+            Thread.sleep(1000);
+            long currentTimeMillis1 = System.currentTimeMillis();
+            System.out.println("task1任务耗时:"+(currentTimeMillis1-currentTimeMillis)+"ms");
+          }
+
+          @Async
+          public void task2() throws InterruptedException{
+            long currentTimeMillis = System.currentTimeMillis();
+            Thread.sleep(2000);
+            long currentTimeMillis1 = System.currentTimeMillis();
+            System.out.println("task2任务耗时:"+(currentTimeMillis1-currentTimeMillis)+"ms");
+          }
+          @Async
+          public void task3() throws InterruptedException{
+            long currentTimeMillis = System.currentTimeMillis();
+            Thread.sleep(3000);
+            long currentTimeMillis1 = System.currentTimeMillis();
+            System.out.println("task3任务耗时:"+(currentTimeMillis1-currentTimeMillis)+"ms");
+          }
+        }
+
+    4.建立controller类
+ 
+          @RequestMapping("")
+          @RestController
+          public class AsyncTaskController {
+
+            @Autowired
+            private AsyncTask asyncTask;
+
+            @RequestMapping("")
+            public String doTask() throws InterruptedException{
+              long currentTimeMillis = System.currentTimeMillis();
+              asyncTask.task1();
+              asyncTask.task2();
+              asyncTask.task3();
+              long currentTimeMillis1 = System.currentTimeMillis();
+              return "task任务总耗时:"+(currentTimeMillis1-currentTimeMillis)+"ms";
+
+            }
+          }
