@@ -1,0 +1,50 @@
+配置文件
+  开发项目时常常会有几种环境，比如dev环境，test环境等等，不同的环境某些参数就会不一样，配置文件不一样，这个时候就会用到@value注解了
+  yml文件命名规范：application-xxx.yml 因为项目去默认加载配置文件的时候会有这个格式要求。 
+  比如三个配置文件：
+    application-dev.yml：
+      spring:
+        profiles: dev
+      user:
+          userName:王1
+          sex: 男
+          age: 18
+      author:
+          name: w
+          height: 172
+
+  application-test.yml：
+    spring:
+      profiles: test
+    user:
+        userName:王2
+        sex: 男
+        age: 18
+    author:
+        name: w
+        height: 172
+        
+  application-stage.yml：
+  spring:
+      profiles: stage
+    user:
+        userName:王3
+        sex: 男
+        age: 18
+    author:
+        name: w
+        height: 172
+        
+     每个配置文件都说明了自己的spring.profiles名称，然后其他内容稍有不同以示区分。  
+     
+     
+     使用时通过@value注释即可，如
+      @Value(value = "${user.userName}")
+      private String userName;
+      @Value("${user.sex}")
+      private String sex;
+      @Value("${user.age}")
+      private String age;
+      可以看得value注解的使用方式：@Value(value = “${user.userName}”)，这个时候就会把配置文件里的user.userName的值赋值给变量userName 
+     
+    
